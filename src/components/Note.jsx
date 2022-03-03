@@ -2,6 +2,7 @@ import React from "react"
 
 function Note(props) {
 
+    // A função handleClick() é um Event Handler. Ela executa a função deleteNote() pertencente ao componente App e recebida como propriedade para o componente Note.
     function handleClick() {
         props.onDelete(props.id)
     }
