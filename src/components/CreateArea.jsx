@@ -10,6 +10,12 @@ function CreateArea(props) {
         content: ''
     })
 
+    const [isCollapse, setIsCollapse] = useState(false)
+
+    function collapse(e) {
+        setIsCollapse(true)
+    }
+
     // A função handleChange() é um Event Handler: Uma função executada sempre que um evento ocorre. Neste caso, o evento trata-se do onChange presente nos elementos Input e Textarea.
     function handleChange(e) {
 
@@ -44,9 +50,9 @@ function CreateArea(props) {
     return (
         <>
             <form className="create-note">
-                <input onChange={handleChange} name="title" placeholder="Title" value={note.title} />
-                <textarea onChange={handleChange} name="content" placeholder="Take a note..." rows="3" value={note.content} />
-                <Zoom in={true}>
+                <input onChange={handleChange} onClick={collapse} name="title" placeholder="Title" value={note.title} />
+                {isCollapse && <textarea onChange={handleChange} name="content" placeholder="Take a note..." rows={isCollapse ? 3 : 1} value={note.content} /> }
+                <Zoom in={isCollapse}>
                     <Fab onClick={submitNote}>
                         <AddIcon />
                     </Fab>
